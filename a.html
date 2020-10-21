@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <style>
+      .red {
+        background-color: red;
+      }
+      .clickClass {
+        background: #f40;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- <div :class="{red:flag}" :style="[indexStyle]">这是一个div</div>
+      <button :style="[buttonIndex]" @click="changeColor">点击变色</button> -->
+      <ul v-for="(item,i) in list" :key="i">
+        <li @click="clickEve(i)" :class="{clickClass:selectIndex===i}">
+          {{item}}
+        </li>
+      </ul>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          list: ["样本", "类型", "科室", "年龄", "日期"],
+          selectIndex: -1,
+          indexStyle: {
+            width: "200px",
+            height: "200px",
+            border: "1px solid black",
+            borderRadius: "15px",
+            transition: "all linear 0.3s",
+            textAlign: "center",
+            lineHeight: "200px",
+          },
+          buttonIndex: {
+            width: "80px",
+            height: "50px",
+            borderRadius: "10px",
+            marginTop: "20px",
+            fontWeight: "bold",
+            outline: "none",
+          },
+          flag: true,
+        },
+        methods: {
+          changeColor() {
+            this.flag = !this.flag;
+          },
+          clickEve(index) {
+            this.selectIndex = index;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
